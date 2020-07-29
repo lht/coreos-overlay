@@ -39,7 +39,7 @@ SLOT="0/2"
 # Flatcar: Dropped cgroup-hybrid. We use legacy hierarchy by default
 # to keep docker working. Dropped static-libs, we don't care about
 # static libraries.
-IUSE="acl apparmor audit build cryptsetup curl elfutils +gcrypt gnuefi homed http +hwdb idn importd +kmod +lz4 lzma nat pam pcre pkcs11 policykit pwquality qrcode repart +resolvconf +seccomp selinux +split-usr ssl +sysv-utils test vanilla xkb"
+IUSE="acl apparmor audit build cryptsetup curl elfutils +gcrypt gnuefi homed http +hwdb idn importd +kmod libidn2 +lz4 lzma nat pam pcre pkcs11 policykit pwquality qrcode repart +resolvconf +seccomp selinux +split-usr ssl +sysv-utils test vanilla xkb"
 
 REQUIRED_USE="
 	homed? ( cryptsetup )
@@ -65,7 +65,9 @@ COMMON_DEPEND=">=sys-apps/util-linux-2.30:0=[${MULTILIB_USEDEP}]
 		>=net-libs/libmicrohttpd-0.9.33:0=
 		ssl? ( >=net-libs/gnutls-3.1.4:0= )
 	)
-	idn? ( net-dns/libidn2:= )
+	idn? (
+		libidn2? ( net-dns/libidn2:= )
+	)
 	importd? (
 		app-arch/bzip2:0=
 		sys-libs/zlib:0=
